@@ -1,0 +1,13 @@
+package com.spring.basic.model;
+
+import java.util.List;
+
+public class UserVO {
+	
+	//VO를 생성할 땐 변수명을 파라미터이름과 동일하게 맞춰줘야 합니다!
+	private String userId;
+	private String userPw;
+	private String userName;
+	private List<String> hobby;
+
+}
