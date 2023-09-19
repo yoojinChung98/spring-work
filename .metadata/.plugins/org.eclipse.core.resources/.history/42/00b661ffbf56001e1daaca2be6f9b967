@@ -1,0 +1,5 @@
+package com.spring.basic.score.service;
+
+public class ScoreService {
+
+}
