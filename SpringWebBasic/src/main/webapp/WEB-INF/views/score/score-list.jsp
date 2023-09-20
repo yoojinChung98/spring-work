@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,9 +104,57 @@
                 </label>
             </form>
             
+            <hr/>
+
+            <ul class="score-list">
+                <li class="list-header">
+                    <div class="count">총 학생수: ${sList.size()}명</div>
+                    <div class="sort-link-group">
+                        <div><a href="#">학번 순</a></div>
+                        <div><a href="#">이름 순</a></div>
+                        <div><a href="#">평균 순</a></div>
+                    </div>
+                </li>
+                
+               	<c:forEach var="s" items="${sList}">
+	                <li>
+	                    # 학번: ${s.stuNum}, 이름: <a href="/basic/score/detail?stuNum=${s.stuNum}">${s.maskingName}</a>,
+                        평균: ${s.average}, 학점: ${s.grade}
+	                    <a href="/basic/score/remove?stuNum=${s.stuNum}" class="del-btn">삭제</a>                	
+    	            </li>
+               	</c:forEach>
+            </ul>
             
 		</section>
 	</div>
 
+    <script>
+        const $ul = document.querySelector('.score-list');
+
+        //$ul 에 클릭 이벤트가 발생하면 하단의 화살표함수 실행 (이벤트 전파 방식)
+        // $ul.addEventListener('click', function(e) {
+        $ul.addEventListener('click', e => {
+            
+            //일일이 이벤트를 발생시키기 귀찮을 때 이벤트 전파 방식 사용
+            //원하는 것은 부모가 아닌 자식을 눌렀을 때 이벤트 발생!
+            //(원하는 것이 아닌 것을 눌렀을 때는 반응 안하도록 할 것임)
+            if(!e.target.matches('a.del-btn')) {
+                return; //이벤트 강제 종료
+            }
+            e.preventDefault(); // a태그의 기본 기능 정지
+
+            
+            if(confirm('정말 삭제하시겠습니까?')) {
+                // 삭제 진행
+                //e.target = a태그
+                //location.href == sendRedirect();
+                location.href = e.target.getAttribute('href');
+            }else {
+                return; //(false)시 삭제 취소
+                
+            }
+        });
+
+    </script>
 </body>
 </html>

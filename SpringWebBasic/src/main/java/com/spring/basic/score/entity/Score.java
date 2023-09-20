@@ -1,5 +1,6 @@
 package com.spring.basic.score.entity;
 
+import com.spring.basic.score.dto.ScoreModiRequestDTO;
 import com.spring.basic.score.dto.ScoreRequestDTO;
 
 import lombok.AllArgsConstructor;
@@ -11,10 +12,10 @@ import lombok.ToString;
 
 /*
  Entity 클래스
- - 실제 데이터베이스에 저장된 테이블(값의 모음) 형태와 1:1로 매칭되는 클래스.
+ - 실제 데이터베이스에 저장된 테이블(값의 모음) 형태와 1:1로 매칭되는 클래스.(똑같이 생겨야 함)
  - DB 테이블 내에 존재하는 속성만을 필드로 가져야 합니다.
- - 상속이나 구현체여서는 안되며, 존재하지 않는 컬럼값(테이블값)을 가져서도 안됨 (가장 pure한 객체)
- - 절대로 요청이나 응답값을 전달하는 클래스로 사용하지 않음 (DTO의 역할)
+ - 상속이나 구현체여서는 안되며(자식클래스여도 안되고 인터페이스 구현도 안됨! 어디에도 영향받지 않는 순수한 객체로 놔두어야 해!!), 존재하지 않는 컬럼값(테이블값)을 가져서도 안됨 (가장 pure한 객체)
+ - **절대로 요청이나 응답값을 전달하는 클래스로 사용하지 않음 (DTO의 역할)**
  */
 
 
@@ -35,12 +36,18 @@ public class Score {
 	
 	
 	
-	public Score(ScoreRequestDTO dto) {
-		this.stuName = dto.getName();
+	public Score(ScoreRequestDTO dto) { //Score(Entity) 객체 생성자 : DTO 받아감. (얘를 service에서 생성하면서 dto를 담아줄 것.)
+		this.stuName = dto.getName(); //dto에 담긴 이름(사용자가 입력)을 엔티티객체의 이름에 담겠음.
 		changeScore(dto);
 	}
-	
 
+	public void changeScore(ScoreModiRequestDTO dto) {
+        this.kor = dto.getKor();
+        this.eng = dto.getEng();
+        this.math = dto.getMath();
+        calcTotalAndAvg(); // 총점, 평균 계산
+        calcGrade(); // 학점 계산
+    }
 	
 	public void changeScore(ScoreRequestDTO dto) {
         this.kor = dto.getKor();
@@ -50,7 +57,7 @@ public class Score {
         calcGrade(); // 학점 계산
     }
 
-    private void calcGrade() {
+    private void calcGrade() { //여기서 등급이 필요한데, 안정성을 위해 eNum 사용.
         if (average >= 90) {
             this.grade = Grade.A;
         } else if (average >= 80) {
@@ -65,8 +72,8 @@ public class Score {
     }
 
     private void calcTotalAndAvg() {
-        this.total = kor + eng + math;
-        this.average = total / 3.0;
+        this.total = kor + eng + math; //모두 this. 가 생략 되어있는 것.
+        this.average = total / 3.0; //여기도 this 생략
     }
 
 	
