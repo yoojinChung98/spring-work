@@ -26,10 +26,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Score {
 
+	private int stuNum; //학번 : 데이터베이스에서 매겨주는 것으로 여기서 따로 가공하지는 않음.
 	private String stuName; //학생 이름
 	private int kor, eng, math; // 국, 영, 수 점수
 	
-	private int stuNum; //학번 : 데이터베이스에서 매겨주는 것으로 여기서 따로 가공하지는 않음.
 	private int total; //총점
 	private double average; //평균
 	private Grade grade;
