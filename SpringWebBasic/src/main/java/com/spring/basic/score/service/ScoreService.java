@@ -11,6 +11,7 @@ import com.spring.basic.score.dto.ScoreListResponseDTO;
 import com.spring.basic.score.dto.ScoreModiRequestDTO;
 import com.spring.basic.score.dto.ScoreRequestDTO;
 import com.spring.basic.score.entity.Score;
+import com.spring.basic.score.repository.IScoreMapper;
 import com.spring.basic.score.repository.IScoreRepository;
 import com.spring.basic.score.repository.ScoreRepositoryImple;
 
@@ -20,15 +21,15 @@ import lombok.RequiredArgsConstructor;
 //ex) 값을 가공, 예외 처리, dto 변환, 트랜잭션 처리 등등...
 
 @Service //빈 등록.
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class ScoreService {
 
-	private final IScoreRepository scoreRepository;
+	private final IScoreMapper scoreRepository;
 	
-	@Autowired
-	public ScoreService(@Qualifier("jdbc")IScoreRepository scoreRepository) {
-		this.scoreRepository = scoreRepository;
-	}
+//	@Autowired
+//	public ScoreService(@Qualifier("spring")IScoreRepository scoreRepository) {
+//		this.scoreRepository = scoreRepository;
+//	}
 	
 	
 	//등록의 중간처리

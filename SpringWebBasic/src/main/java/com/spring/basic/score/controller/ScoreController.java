@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/score")
-@RequiredArgsConstructor //: fianl 필드가 존재한다면 그것은(꼭 필요로하는 값은) 초기화 해주는 생성자.
+@RequiredArgsConstructor //: final 필드가 존재한다면 그것은(꼭 필요로하는 값은) 초기화 해주는 생성자.
 							//+ 해당 필드에 @Autowired를 붙여줌.
 public class ScoreController {
 	
@@ -28,7 +28,7 @@ public class ScoreController {
 	// 만약에 클래스의 생성자가 단 1개라면 자동으로 @Autowired를 작성해줌 (빈에 등록 된 객체를 자동으로 주입해줌)
 	// 근데 나는 service 를 빈에 등록한 기억이 없는걸...? 아
 	// ScoreSerivce 에서 @Service 로 빈등록 했네...?^^
-	
+	 
 
 //	@Autowired
 //	public ScoreController(ScoreService scoreService) {

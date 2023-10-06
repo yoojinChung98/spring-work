@@ -171,13 +171,13 @@ public class ScoreJdbcRepository implements IScoreRepository {
 	public void deleteBystuNum(int stuNum) {
 		//일단 stuNum 매개변수로 받음
 		String sql = "DELETE FROM score WHERE stuNUM = ? ";
+		//String sql = "DELETE FROM score WHERE stuNUM ="+stuNum;
 		
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, stuNum);
-			pstmt.executeUpdate();
-			
+			pstmt.executeUpdate();			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,7 +189,6 @@ public class ScoreJdbcRepository implements IScoreRepository {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	@Override
