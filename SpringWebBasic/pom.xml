@@ -91,12 +91,21 @@
 		    <scope>provided</scope>
 		</dependency>
 		
-		<!-- ojdbc6 오라클 데이터베이스 커넥터 드라이버 -->
+		<!-- ojdbc6 오라클 데이터베이스 커넥터 드라이버, 에러떠서 8로 바꿈.
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0.4</version>
 		</dependency>
+		 -->
+		
+		<!-- ojdbc8 -->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <version>12.2.0.1</version>
+		</dependency>
+		
 		
 		<!-- spring jdbc -->
 		<dependency>

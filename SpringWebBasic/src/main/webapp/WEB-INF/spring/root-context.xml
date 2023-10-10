@@ -35,16 +35,26 @@
 		<property name="dataSource" ref="ds" />		
 	</bean>
 	
-	<!-- myBatis SQL 동작을 위한 핵심 객체 SqlSessionFactory 클래스 빈 등록 -->
+	<!-- myBatis SQL 동작을 위한 핵심 객체 SqlSessionFactory 클래스 빈 등록, Mapper가 어디있는지 알려줌. -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean" primary="false">
 		<property name="dataSource" ref="ds" />
 		<!-- 클래스 대신 xml파일을 만들고 그것이 작동하게 함. 그 인터페이스를 구현하는 xml파일을 어디에 작성할 것인지 묻는 것. -->
 		<!-- 인터페이스의 구현체가 될 xml 파일의 위치를 지목하는 setter 메서드 -->
 		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
+		<!-- 
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:/mappers/ScoreMapper.xml</value>
+				<value>classpath:/mappers/BoardMapper.xml</value>
+				<value>classpath:/mappers/ReplyMapper.xml</value>
+				<value>classpath:/mappers/ImgMapper.xml</value>
+			</array>
+		</property>
+		-->
 	</bean>
 
-	<!-- IScoreMapper가 어디에 있는지 나타내주는것? -->
+	<!-- IScoreMapper(매퍼의 인터페이스)가 어디에 있는지 나타내주는것? -->
 	<!-- 
         SqlSessionFactory가 여러분이 지정하신 경로의 xml 파일을 클래스로 변환하여
         bean으로 등록하려는 시도를 할 때, 어떤 타입으로 빈 등록을 할 지를 결정해야 하는데,
@@ -53,5 +63,6 @@
         그래 너네가 만든 xml 파일을 무슨타입의 빈으로 만들까? 아 무슨인터페이스인지는 명시해놨으니까 밑의 패키지의 경로에서 찾아보라고? ㅇㅋ
      -->
 	<mybatis-spring:scan base-package="com.spring.basic.score.repository"/>
+	<mybatis-spring:scan base-package="com.spring.basic.board.repository"/>
 	
 </beans>
