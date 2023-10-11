@@ -1,4 +1,4 @@
 #Tomcat publish data
-#Tue Oct 10 15:59:56 KST 2023
-org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ict\\.m2\\repository\\org\\springframework\\spring-web\\5.3.18\\spring-web-5.3.18.jar=C\:\\MyWork\\apache-tomcat-9.0.80\\wtpwebapps\\SpringWebBasic\\WEB-INF\\lib\\spring-web-5.3.18.jar
-org.eclipse.jst.jee.server\:SpringWebBasic=C\:\\MyWork\\apache-tomcat-9.0.80\\wtpwebapps\\SpringWebBasic
+#Wed Oct 11 09:55:13 KST 2023
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ict\\.m2\\repository\\org\\springframework\\spring-web\\5.3.18\\spring-web-5.3.18.jar=C\:\\MyWork\\apache-tomcat-9.0.80\\wtpwebapps\\MyWeb\\WEB-INF\\lib\\spring-web-5.3.18.jar
+org.eclipse.jst.jee.server\:MyWeb=C\:\\MyWork\\apache-tomcat-9.0.80\\wtpwebapps\\MyWeb
