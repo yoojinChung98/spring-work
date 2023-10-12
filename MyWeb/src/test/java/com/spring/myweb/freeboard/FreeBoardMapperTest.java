@@ -37,21 +37,21 @@ public class FreeBoardMapperTest {
 		// 테스트는 given - when - then 패턴을 따름 (권장사항)
 		
 		//given: 테스트를 위해 주어질 데이터 세팅 (실제로는 parameter 값이 넘어온 상황) //지금은 생략됨
-//		for(int i=1; i<=10; i++) {
-//			//when: 테스트 실제 상황 세팅
-//			mapper.regist(FreeBoard.builder()
-//									.title("테스트 제목"+i)
-//									.writer("abc1234")
-//									.content("테스트 내용입니다."+i)
-//									.build());;
-//		}
+		for(int i=1; i<=300; i++) {
+			//when: 테스트 실제 상황 세팅
+			mapper.regist(FreeBoard.builder()
+									.title("테스트 제목"+i)
+									.writer("abc1234")
+									.content("테스트 내용입니다."+i)
+									.build());;
+		}
 		
-		mapper.regist(FreeBoard.builder()
-				.title("메롱메롱")
-				.writer("abc1234")
-				.content("테스트 중!")
-				.build());;
-		//then: 테스트의 결과를 확인. //지금은 생략됨(getList 아직 구현 안함)
+//		mapper.regist(FreeBoard.builder()
+//				.title("메롱메롱")
+//				.writer("abc1234")
+//				.content("테스트 중!")
+//				.build());;
+//		//then: 테스트의 결과를 확인. //지금은 생략됨(getList 아직 구현 안함)
 	}
 	
 	@Test
