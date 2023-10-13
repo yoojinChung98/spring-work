@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.spring.myweb.freeboard.dto.FreeContentResponseDTO;
-import com.spring.myweb.freeboard.dto.FreeRegistRequestDTO;
-import com.spring.myweb.freeboard.dto.FreeUpdateRequestDTO;
+import com.spring.myweb.freeboard.dto.page.Page;
+import com.spring.myweb.freeboard.dto.page.PageCreator;
+import com.spring.myweb.freeboard.dto.request.FreeRegistRequestDTO;
+import com.spring.myweb.freeboard.dto.request.FreeUpdateRequestDTO;
+import com.spring.myweb.freeboard.dto.response.FreeContentResponseDTO;
 import com.spring.myweb.freeboard.service.IFreeBoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,10 +24,26 @@ public class FreeBoardController {
 
 	private final IFreeBoardService service;
 	
+	//페이징이 들어간 목록 화면
 	@GetMapping("/freeList")
-	public void freeList(Model model) {
+	public void freeList(Page page, Model model) {
 		System.out.println("/freeboard/freeList: GET");
-		model.addAttribute("boardList",service.getList());
+		//만일 검색 결과가 0이라면?
+		PageCreator creator;
+		
+		int totalCount = service.getTotal(page);
+		if(totalCount == 0) {
+			page.setKeyword(null);
+			page.setCondition(null);
+			//검색을 하지 않은 것처럼 초기화해주기 위해서
+			creator = new PageCreator(page, service.getTotal(page));
+			model.addAttribute("msg", "searchFail");
+		}else {
+			creator = new PageCreator(page, totalCount);
+		}
+		
+		model.addAttribute("boardList",service.getList(page));
+		model.addAttribute("pc",creator);
 	}
 	
 	//글쓰기 페이지 열어주는 메서드
@@ -43,7 +61,7 @@ public class FreeBoardController {
 	
 	//글 상세보기 처리
 	@GetMapping("/content")
-	public String getContent(int bno, Model model) {
+	public String getContent(int bno, Model model, @ModelAttribute("p") Page page) {
 		model.addAttribute("article",service.getContent(bno));
 		return "freeboard/freeDetail";
 	}
