@@ -11,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Page {
+	//사용자가 어떤 페이지 요청?
+	//항상 넘어오는 
 	
 	private int pageNo; //클라이언트가 보낸 페이지 번호
 	private int amount; //한 페이지에 보여질 게시물 수
@@ -47,7 +49,8 @@ public class Page {
 	//매퍼에서 그냥 pageStart라고 부르기 위해 일부러 getter의 모양과 동일하게 get-을 붙임
 	public int getPageStart() {
 		/*
-		 WHERE rn > ps AND rn <= pe;
+		 하나의 페이지에 몇번부터 몇번의 게시글을 띄울지 WHERE 조건을 주기위한 변수값 설정 메서드.
+		 WHERE rn > pageStart AND rn <= pageEnd;
 		 pageNo:1 -> return 0;
 		 page: 2 -> return 10;
 		 */

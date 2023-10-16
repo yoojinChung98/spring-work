@@ -51,7 +51,7 @@
             
             /*
             2. http 요청 설정 (요청방식, 요청URL) 세팅
-            - 요청방식 (REST 방식엔 규약이 있다,,? 이해 모담)(요청방식만 보고도 어떤 요청인지 얼추 알 수 있음)
+            - 요청방식 (REST 방식엔 규약이 있다,,? 이해 모담)(요청 방식만 보고도 어떤 요청인지 얼추 알 수 있음)
             a. GET - 조회
             b. POST - 등록
             c. PUT - 수정
@@ -76,12 +76,13 @@
 
             //전송할 데이터의 형태가 어떠한지를 요청 헤더에 지정.
             //(지금 내가 요청과 함께 보내는 content의 type은 json 타입이라고 명세(알리는))하는 것.)
-            xhr.setRequestHeader('content-type', 'applicaiton/json');
+            xhr.setRequestHeader('content-type', 'application/json');
 
             //4. 서버에 요청 전송
             xhr.send(sendData);
 
             //5. 응답된 정보 확인 (send 뒤에 onload로 받겠음.)
+            //응답이 오면 onload가 되는 것임()
             xhr.onload = function() {
                 //응답 코드 (응답상태 코드로 함 잘 돌아갔는지 확인해보겠음)
                 console.log(xhr.status);
